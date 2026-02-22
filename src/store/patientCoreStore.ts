@@ -118,9 +118,9 @@ if (typeof window !== 'undefined') {
             const baseHR = state.participantCondition === 'critical' ? 120 : state.participantCondition === 'at-risk' ? 95 : 75;
             const baseO2 = state.participantCondition === 'critical' ? 88 : state.participantCondition === 'at-risk' ? 94 : 98;
 
-            state.addHeartRateData(baseHR + (Math.random() * 10 - 5));
-            state.addOxygenData(baseO2 + (Math.random() * 4 - 2));
-            state.setSystemLoad(Math.max(10, Math.min(95, state.systemLoad + (Math.random() * 10 - 5))));
+            state.addHeartRateData(Math.round(baseHR + (Math.random() * 10 - 5)));
+            state.addOxygenData(Math.round(baseO2 + (Math.random() * 4 - 2)));
+            state.setSystemLoad(Math.round(Math.max(10, Math.min(95, state.systemLoad + (Math.random() * 10 - 5)))));
         } else {
             // LIVE MODE connects to the real PostgreSQL DB via API reconstructor
             state.syncLiveState();

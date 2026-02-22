@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
         const state = useFamilyStore.getState();
         const baseHR = 95;
         const baseO2 = 94;
-        state.addHeartRateData(baseHR + (Math.random() * 10 - 5));
-        state.addOxygenData(baseO2 + (Math.random() * 4 - 2));
+        state.addHeartRateData(Math.round(baseHR + (Math.random() * 10 - 5)));
+        state.addOxygenData(Math.round(baseO2 + (Math.random() * 4 - 2)));
     }, 2000);
 }
