@@ -69,7 +69,7 @@ export function TimelineHistory() {
             <div className="flex-1 bg-white relative py-1px px-4 md:px-12 border-none">
                 <div className="absolute left-8 md:left-[104px] top-4 bottom-10 w-0.5 bg-slate-200 rounded-full" />
 
-                <div className="space-y-6 relative z-10 w-full overflow-y-auto max-h-[60vh] pb-10 pr-4 styled-scrollbar">
+                <div className="space-y-6 relative z-10 w-full pb-10 pr-4">
                     <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-slate-400 pl-16 md:pl-[140px] mb-4 mt-4">
                         <Clock size={14} /> Tracking {timescale} Horizon
                     </div>

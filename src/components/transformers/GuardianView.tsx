@@ -56,10 +56,10 @@ export function GuardianView() {
                 </div>
             </GlassPanel>
 
-            <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-2xl mx-auto w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-7xl mx-auto w-full">
 
                 {/* Sentence 1: Condition & Reassurance */}
-                <GlassPanel delay={0.1} className={`p-5 bg-white border-l-4 shadow-sm ${isStable ? 'border-l-emerald-500' : 'border-l-amber-500'}`}>
+                <GlassPanel delay={0.1} className={`p-5 bg-white border-l-4 shadow-sm md:col-span-2 lg:col-span-4 ${isStable ? 'border-l-emerald-500' : 'border-l-amber-500'}`}>
                     <div className="flex items-start gap-4">
                         <div className={`p-3 rounded-full shrink-0 ${isStable ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
                             <Activity size={24} />
@@ -74,7 +74,7 @@ export function GuardianView() {
                 </GlassPanel>
 
                 {/* Live Signals / Telemetry */}
-                <GlassPanel delay={0.15} className="p-5 bg-slate-900 border-slate-800 shadow-xl relative overflow-hidden">
+                <GlassPanel delay={0.15} className="p-5 bg-slate-900 border-slate-800 shadow-xl relative overflow-hidden md:col-span-2 bg-gradient-to-br from-slate-900 to-slate-950">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-50" />
                     <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
                         <Activity size={14} className="text-blue-400" /> Live Signals Streaming
@@ -100,7 +100,7 @@ export function GuardianView() {
                 </GlassPanel>
 
                 {/* Caregiver Actions & Next Steps */}
-                <GlassPanel delay={0.2} className="p-5 bg-white border-l-4 border-l-blue-500 shadow-sm">
+                <GlassPanel delay={0.2} className="p-5 bg-white border-l-4 border-l-blue-500 shadow-sm md:col-span-2">
                     <div className="flex items-start gap-4">
                         <div className="p-3 bg-blue-50 rounded-full text-blue-600 shrink-0">
                             <Users size={24} />
@@ -115,7 +115,7 @@ export function GuardianView() {
                 </GlassPanel>
 
                 {/* Editable Section: Daily Routines Checklist */}
-                <GlassPanel delay={0.25} className="p-5 bg-white shadow-sm flex flex-col gap-3">
+                <GlassPanel delay={0.25} className="p-5 bg-white shadow-sm flex flex-col gap-3 md:col-span-1 lg:col-span-1">
                     <h4 className="text-sm font-bold text-slate-800 uppercase tracking-wide flex items-center gap-2">
                         <CheckSquare size={16} className="text-teal-600" /> Today&apos;s Routine
                     </h4>
@@ -137,7 +137,7 @@ export function GuardianView() {
 
 
                 {/* Editable Section: Medication Adherence */}
-                <GlassPanel delay={0.3} className="p-5 bg-white shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <GlassPanel delay={0.3} className="p-5 bg-white shadow-sm flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4 md:col-span-1 lg:col-span-2">
                     <div className="flex items-center gap-4">
                         <div className="relative w-14 h-14 flex items-center justify-center shrink-0">
                             <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
@@ -172,7 +172,7 @@ export function GuardianView() {
                 </GlassPanel>
 
                 {/* Editable Section: Caregiver Notes */}
-                <GlassPanel delay={0.35} className="p-5 bg-white shadow-sm flex flex-col gap-3">
+                <GlassPanel delay={0.35} className="p-5 bg-white shadow-sm flex flex-col gap-3 md:col-span-2 lg:col-span-4">
                     <h4 className="text-sm font-bold text-slate-800 uppercase tracking-wide">Add Caregiver Note</h4>
                     <div className="flex gap-2">
                         <textarea
@@ -194,7 +194,7 @@ export function GuardianView() {
                 </GlassPanel>
 
                 {/* Visit Reminder */}
-                <GlassPanel delay={0.4} className="p-5 bg-white shadow-sm flex items-center justify-between group cursor-pointer hover:border-indigo-200 transition-colors">
+                <GlassPanel delay={0.4} className="p-5 bg-white shadow-sm flex items-center justify-between group cursor-pointer hover:border-indigo-200 transition-colors md:col-span-1 lg:col-span-1 hidden lg:flex">
                     <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
                             <CalendarClock size={24} />
