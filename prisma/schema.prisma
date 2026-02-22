@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// NextAuth Models ---------------------------------------
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          String    @default("worker") // family, worker, provider, hospital, regulator
+
+  accounts      Account[]
+  sessions      Session[]
+  events        Event[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Domain Models -----------------------------------------
+
+model Participant {
+  id            String    @id @default(cuid())
+  name          String
+  dob           DateTime?
+  address       String?
+  
+  events        Event[]
+}
+
+// The Core Ledger Anchor
+model Event {
+  id                 String   @id @default(uuid())
+  
+  participantId      String
+  participant        Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  
+  actorId            String
+  actor              User        @relation(fields: [actorId], references: [id], onDelete: Cascade)
+  
+  occurredAt         DateTime // actual time
+  recordedAt         DateTime @default(now()) // server time
+  
+  type               String // e.g., PRESENCE, OBSERVATION, TASK_EXECUTION, NOTE, ATTACHMENT, ALERT, CONVERSATION_MESSAGE
+  
+  // Extension Relations
+  presence           Presence?
+  observations       Observation[]
+  taskExecutions     TaskExecution[]
+  notes              Note[]
+  attachments        Attachment[]
+  alerts             Alert[]
+  messages           ConversationMessage[]
+}
+
+// Extension Tables
+
+model Presence {
+  id                 String   @id @default(cuid())
+  eventId            String   @unique
+  event              Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  latitude           Float
+  longitude          Float
+  accuracy           Float?
+}
+
+model Observation {
+  id                 String   @id @default(cuid())
+  eventId            String
+  event              Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  metric             String   // e.g., "heart_rate", "spo2"
+  value              Float
+  unit               String
+}
+
+model TaskExecution {
+  id                 String   @id @default(cuid())
+  eventId            String
+  event              Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  taskCode           String
+  result             String   // e.g., "completed", "skipped"
+}
+
+model Note {
+  id                 String   @id @default(cuid())
+  eventId            String
+  event              Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  text               String
+}
+
+model Attachment {
+  id                 String   @id @default(cuid())
+  eventId            String
+  event              Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  fileHash           String
+  fileType           String
+}
+
+model Alert {
+  id                 String   @id @default(cuid())
+  eventId            String
+  event              Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  ruleCode           String
+  severity           String
+}
+
+model ConversationMessage {
+  id                 String   @id @default(cuid())
+  eventId            String
+  event              Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  senderRole         String
+  messageText        String
+}
