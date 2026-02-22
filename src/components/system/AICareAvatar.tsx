@@ -16,18 +16,18 @@ export function AICareAvatar() {
     let narrativeMessage = '';
 
     if (participantCondition === 'stable') {
-        if (userRole === 'family') narrativeMessage = "Evelyn's vital signs and environmental markers remain stable. Continuous monitoring is active.";
-        else if (userRole === 'worker') narrativeMessage = "Environmental sensors and localized telemetry report nominal baselines. Proceed with scheduled protocols.";
-        else if (userRole === 'provider') narrativeMessage = "Hemodynamics and respiratory patterns demonstrate sustained stability. Continue baseline protocol.";
-        else narrativeMessage = "The ecosystem is operating at optimal compliance. Zero clinical deviations detected.";
+        if (userRole === 'family') narrativeMessage = "Hi there! Evelyn is doing great today. Her vitals are perfectly stable, and she's resting comfortably.";
+        else if (userRole === 'worker') narrativeMessage = "Hello! Evelyn's environment is safe, and her vitals are fully stable. You can proceed with today's regular care plan.";
+        else if (userRole === 'provider') narrativeMessage = "Good news—Evelyn's hemodynamics and respiratory patterns remain perfectly stable. No new interventions needed at this time.";
+        else narrativeMessage = "Everything is looking excellent. All clinical markers for Evelyn are fully stable right now.";
     } else {
-        // Explain the anomaly professionally
+        // Explain the anomaly professionally but friendlier
         const latestInsight = aiInsights.find(i => i.severity !== 'info')?.message || "A minor variance was detected.";
 
-        if (userRole === 'family') narrativeMessage = `Clinical observation: ${latestInsight} The on-duty care team has been notified and is reviewing the telemetry data automatically.`;
-        else if (userRole === 'worker') narrativeMessage = `Priority observation: ${latestInsight} Please refer to the Action Center for updated tasks.`;
-        else if (userRole === 'provider') narrativeMessage = `Clinical telemetry flag: ${latestInsight} Please review the respiratory and saturation streams for potential intervention.`;
-        else narrativeMessage = `Audit flag raised: ${latestInsight} The system has automatically isolated the event and requested clinical review.`;
+        if (userRole === 'family') narrativeMessage = `Hi! I wanted to give you a quick update. ${latestInsight} Our care team has already been notified and they are keeping a close eye on her. She's in good hands!`;
+        else if (userRole === 'worker') narrativeMessage = `Heads up! ${latestInsight} Please check the Action Center to see if any new tasks have been added for her care today.`;
+        else if (userRole === 'provider') narrativeMessage = `Care Coordinator update: ${latestInsight} Please review her recent telemetry when you have a moment, just to be safe.`;
+        else narrativeMessage = `Just an update: ${latestInsight} The system has flagged this for a quick clinical review.`;
     }
 
     useEffect(() => {
@@ -69,6 +69,9 @@ export function AICareAvatar() {
                                 <Stethoscope className="text-teal-600" size={16} />
                                 <span className="font-semibold text-slate-800 text-sm tracking-wide">Care Coordinator</span>
                             </div>
+                            <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600 bg-slate-200/50 hover:bg-slate-200 p-1.5 rounded-full transition-colors">
+                                <X size={14} />
+                            </button>
                         </div>
 
                         {/* Message Feed */}

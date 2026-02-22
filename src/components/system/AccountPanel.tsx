@@ -412,7 +412,7 @@ export function AccountPanel() {
                                 <div className="w-full h-full bg-red-50 border border-red-200 rounded-2xl p-4 flex flex-col justify-center gap-4 shadow-sm">
                                     <p className="text-sm text-red-700 text-center font-semibold tracking-wide">End session and securely sign out?</p>
                                     <div className="flex gap-3">
-                                        <button onClick={() => signOut({ callbackUrl: '/' })} className="flex-1 bg-red-600 hover:bg-red-500 text-white shadow-md text-sm py-2.5 rounded-xl transition-all flex justify-center items-center gap-2 font-bold tracking-wide">
+                                        <button onClick={() => signOut({ callbackUrl: '/login' })} className="flex-1 bg-red-600 hover:bg-red-500 text-white shadow-md text-sm py-2.5 rounded-xl transition-all flex justify-center items-center gap-2 font-bold tracking-wide">
                                             <LogOut size={16} /> Confirm
                                         </button>
                                         <button onClick={() => setShowLogoutConfirm(false)} className="flex-1 bg-white hover:bg-slate-50 text-slate-700 text-sm py-2.5 rounded-xl transition-all border border-slate-300 font-bold tracking-wide shadow-sm">Cancel</button>

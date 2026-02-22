@@ -22,7 +22,7 @@ export default function LoginPage() {
     }, [status, router]);
 
     const handleLoginSuccess = () => {
-        signIn('credentials', { callbackUrl: `/${previewRole}` });
+        signIn('credentials', { callbackUrl: `/overview` });
     };
 
     return (
@@ -53,7 +53,7 @@ export default function LoginPage() {
                         {loginMethod === 'options' ? (
                             <div className="flex flex-col gap-4">
                                 <button
-                                    onClick={() => signIn('google', { callbackUrl: `/${previewRole}` })}
+                                    onClick={() => signIn('google', { callbackUrl: `/overview` })}
                                     className="w-full relative flex items-center justify-center gap-3 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 font-medium py-3.5 px-6 rounded-xl transition-all shadow-sm group"
                                 >
                                     <svg className="w-5 h-5 absolute left-5" viewBox="0 0 24 24">

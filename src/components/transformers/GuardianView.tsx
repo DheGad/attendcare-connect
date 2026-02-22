@@ -59,14 +59,14 @@ export function GuardianView() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-7xl mx-auto w-full">
 
                 {/* Sentence 1: Condition & Reassurance */}
-                <GlassPanel delay={0.1} className={`p-5 bg-white border-l-4 shadow-sm md:col-span-2 lg:col-span-4 ${isStable ? 'border-l-emerald-500' : 'border-l-amber-500'}`}>
-                    <div className="flex items-start gap-4">
-                        <div className={`p-3 rounded-full shrink-0 ${isStable ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
-                            <Activity size={24} />
+                <GlassPanel delay={0.1} className={`p-6 bg-white border-t-4 shadow-sm md:col-span-2 lg:col-span-4 rounded-2xl ${isStable ? 'border-t-emerald-400' : 'border-t-amber-400'}`}>
+                    <div className="flex items-center gap-5">
+                        <div className={`p-4 rounded-2xl shrink-0 ${isStable ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
+                            {isStable ? <Heart size={28} /> : <AlertCircle size={28} />}
                         </div>
                         <div>
-                            <h3 className="text-lg font-bold text-slate-800 mb-1">Condition is {isStable ? 'Stable' : 'Elevated'}</h3>
-                            <p className="text-slate-600 font-medium text-sm leading-relaxed">
+                            <h3 className="text-xl font-extrabold text-slate-800 mb-1">{isStable ? 'Evelyn is Resting Comfortably' : 'Attention Required'}</h3>
+                            <p className="text-slate-500 font-medium text-[15px] leading-relaxed">
                                 {vitalsSummary}
                             </p>
                         </div>
@@ -100,14 +100,14 @@ export function GuardianView() {
                 </GlassPanel>
 
                 {/* Caregiver Actions & Next Steps */}
-                <GlassPanel delay={0.2} className="p-5 bg-white border-l-4 border-l-blue-500 shadow-sm md:col-span-2">
+                <GlassPanel delay={0.2} className="p-6 bg-white border-t-4 border-t-blue-400 shadow-sm md:col-span-2 rounded-2xl">
                     <div className="flex items-start gap-4">
-                        <div className="p-3 bg-blue-50 rounded-full text-blue-600 shrink-0">
-                            <Users size={24} />
+                        <div className="p-4 bg-blue-50 rounded-2xl text-blue-600 shrink-0">
+                            <Users size={28} />
                         </div>
                         <div>
-                            <h3 className="text-lg font-bold text-slate-800 mb-1">Caregiver Actions &amp; Next Steps</h3>
-                            <p className="text-slate-600 font-medium text-sm leading-relaxed">
+                            <h3 className="text-lg font-extrabold text-slate-800 mb-1.5">Caregiver Advice</h3>
+                            <p className="text-slate-500 font-medium text-[15px] leading-relaxed">
                                 {recommendation}
                             </p>
                         </div>
